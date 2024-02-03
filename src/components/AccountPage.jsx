@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { users, setUsers } from '../Data';
 const AccountPage = () => {
   const { username } = useParams();
-  const user = users.find((u) => u.username === username);
-  const [newUsername, setNewUsername] = useState(user ? user.username : '');
-  const [newPassword, setNewPassword] = useState(user ? user.password : '');
-  const [newEmail, setNewEmail] = useState(user ? user.email : '');
-  const [newMobileNo, setNewMobileNo] = useState(user ? user.mobileNo :''); 
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const foundUser = users.find((u) => u.username === username);
+    setUser(foundUser);
+    setLoading(false);
+  }, [username, users]);
+
+  const [newUsername, setNewUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newMobileNo, setNewMobileNo] = useState('');
+
   const Navigate = useNavigate() ;
   const handleUpdateAccount = () => {
      
-     const updatedUsers = users.map((user) => {
+    const updatedUsers = users.map((user) => {
       if (user.username === username) {
         return {
           ...user,
           username: newUsername || user.username,
           password: newPassword || user.password,
-          email : newEmail || user.email,
-          mobileNo: newMobileNo || user.mobileNo
+          email: newEmail || user.email,
+          mobileNo: newMobileNo || user.mobileNo,
         };
       }
       return user;
     });
 
-   
     setUsers(updatedUsers);
-
-    alert('Account updated successfully');}
+    alert('Account updated successfully');
+  };
 
     const handleDeleteAccount = () => {
       // Confirm deletion
@@ -41,13 +49,22 @@ const AccountPage = () => {
       }
     };
 
+    if (loading) {
+      return (<div>Loading...</div>);
+    }
+    if (!user) {
+      // User not found
+      window.location.reload();
+    }
+
   return (
+    
     <div className="flex flex-col items-center mt-8 bg-slate-400 py-2 px-7 border-4 border-[#E6E6FA]">
       <h2 className="text-2xl font-bold mb-4">Account Page</h2>
      <div className='w-full text-left font-semibold text-blue-700 mb-1'> <p>Username: {username}</p>
-      <p>Password: {user ? user.password :''}</p>
-      <p>Email: {user ?user.email :''}</p>
-      <p>Mobile No: {user ? user.mobileNo :''}</p></div>
+      <p>Password: {user.password}</p>
+      <p>Email: {user.email}</p>
+      <p>Mobile No: {user.mobileNo}</p></div>
       <input
         type="text"
         placeholder="New Username"
