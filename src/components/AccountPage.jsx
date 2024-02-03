@@ -41,7 +41,7 @@ const AccountPage = () => {
     const handleDeleteAccount = () => {
       // Confirm deletion
       if (window.confirm('Are you sure you want to delete your account?')) {
-        // Remove user from the array and update localStorage
+        // Remove user from the array and update localStorag
         const updatedUsers = users.filter((user) => user.username !== username);
         setUsers(updatedUsers);
         Navigate('/login');
@@ -54,6 +54,7 @@ const AccountPage = () => {
     }
     if (!user) {
       // User not found
+      // this reload neede due to structure internal storage
       window.location.reload();
     }
 
@@ -88,8 +89,8 @@ const AccountPage = () => {
         className="mb-2 p-2 border"
       />
       <input
-        type="email"
-        placeholder="New email"
+        type="number"
+        placeholder="Enter New Mobile No."
         value={newMobileNo}
         onChange={(e) => setNewMobileNo(e.target.value)}
         className="mb-2 p-2 border"
