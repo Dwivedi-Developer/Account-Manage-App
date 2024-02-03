@@ -6,7 +6,7 @@ const AccountPage = () => {
   const { username } = useParams();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const Navigate = useNavigate() ;
   useEffect(() => {
     const foundUser = users.find((u) => u.username === username);
     setUser(foundUser);
@@ -18,7 +18,7 @@ const AccountPage = () => {
   const [newEmail, setNewEmail] = useState('');
   const [newMobileNo, setNewMobileNo] = useState('');
 
-  const Navigate = useNavigate() ;
+  
   const handleUpdateAccount = () => {
      
     const updatedUsers = users.map((user) => {
@@ -53,9 +53,9 @@ const AccountPage = () => {
       return (<div>Loading...</div>);
     }
     if (!user) {
-      // User not found
-      // this reload neede due to structure internal storage
-      window.location.reload();
+     return(<div className='font-bold text-lg'>OOPs!Sorry....  Please Refresh or Login Again</div>
+     
+    )
     }
 
   return (
@@ -93,7 +93,7 @@ const AccountPage = () => {
         placeholder="Enter New Mobile No."
         value={newMobileNo}
         onChange={(e) => setNewMobileNo(e.target.value)}
-        className="mb-2 p-2 border"
+        className=" remove-arrow mb-2 p-2 border"
       />
 
       <button onClick={handleUpdateAccount} className="bg-yellow-500 text-white p-2 rounded">
