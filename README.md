@@ -1,3 +1,14 @@
+
+
+![Registration Page](https://github.com/Dwivedi-Developer/Account-Manage-App/assets/153852130/2ddfca58-6036-4b08-adba-b22d5f45e202)
+
+![AccountPage](https://github.com/Dwivedi-Developer/Account-Manage-App/assets/153852130/6920dd1f-d046-4fc1-aad3-4237de0551c4)
+
+![loginPage](https://github.com/Dwivedi-Developer/Account-Manage-App/assets/153852130/cb9d7fc1-9350-4e6f-b2c4-f939c6ed2145)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
