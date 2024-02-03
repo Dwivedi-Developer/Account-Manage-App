@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Link, Routes,Route } from 'react-router-dom';
+import LoginPage from './components/LoginPage';
+import RegistrationPage from './components/RegistrationPage';
+import AccountPage from './components/AccountPage';
 
-function App() {
+const App = () => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+      <div className="container mx-auto flex flex-col justify-center items-center h-[100vh] bg-[#FFE4B5]">
+        <nav className="my-4 bg-white py-1 px-2 border-4 border-[#E6E6FA]">
+          <ul className="flex space-x-4 font-semibold text-2xl ">
+            <li>
+              <Link to="/login" className="text-blue-500 hover:underline">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/register" className="text-green-500 hover:underline">
+                Register
+              </Link>
+            </li>
+            <li>
+              <Link to="/login" className="text-yellow-500 hover:underline">
+                Account
+              </Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/account/:username"
+           element= {
+              <AccountPage  />
+            } />
+         
+       </Routes>
+      </div>
+    
   );
-}
+};
 
 export default App;
