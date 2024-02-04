@@ -53,7 +53,7 @@ const AccountPage = () => {
       return (<div>Loading...</div>);
     }
     if (!user) {
-     return(<div className='font-bold text-lg'>OOPs!Sorry....  Please Refresh or Login Again</div>
+     return(<div className='font-bold text-lg'>OOPs!Sorry....  Please Refresh and Login Again</div>
      
     )
     }
